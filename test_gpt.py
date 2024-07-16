@@ -21,9 +21,13 @@ def analyze_sentiment(text):
             {"role": "user", "content": f"Analyze the sentiment of the following financial post and categorize it as Positive, Negative, or Neutral: {text}"}
         ]
     )
-    return response.choices[0].message['content'].strip()
+    # Print the response for debugging purposes
+    print(response)
+    # Extract the message content from the response
+    sentiment_analysis = response['choices'][0]['message']['content'].strip()
+    return sentiment_analysis
 
 # Example usage
-financial_post = "Whats up with $LULU? Numbers looked good, not great, but good. I think conference call will instill confidence."
+financial_post = "What's up with $LULU? Numbers looked good, not great, but good. I think conference call will instill confidence."
 sentiment = analyze_sentiment(financial_post)
 print(f"The sentiment of the post is: {sentiment}")
